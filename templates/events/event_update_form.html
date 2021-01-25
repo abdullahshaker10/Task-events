@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %} 
 
-{% block title %}Log In{% endblock title %} 
-{% block content %}
+{% block title %}Events update{% endblock title %}
+
+{% block content %} 
 <form method="post">
   {% csrf_token %} 
   {{ form|crispy }}
-  <button class="btn btn-primary" type="submit">Log In</button>
+  <button class="btn btn-primary" type="submit">Update</button>
 </form>
+
 {% endblock content %}

@@ -8,6 +8,9 @@ django = "*"
 psycopg2-binary = "*"
 django-allauth = "*"
 django-crispy-forms = "*"
+djangorestframework = "*"
+django-debug-toolbar = "*"
+django-seed = "*"
 
 [dev-packages]
 pylint = "*"

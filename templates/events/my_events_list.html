@@ -1,0 +1,38 @@
+{% extends 'base.html' %} 
+{% block title %}Events{% endblock title %} 
+{% load static %} 
+{% block content %}
+
+<div class="row">
+  {% for event in my_events%}
+  <div class="col-lg-4">
+    <div
+      class="box-element event"
+      data-event="{{event.id}}"
+      data-user="{{request.user.id}}"
+    >
+      <h6>
+        <a href="{%url 'event_detail' event.id%}"><strong>{{event.title}}</strong> </a>
+      </h6>
+      <hr />
+      <p>By: {{event.owner}}</p>
+      <p>date: {{event.date |date:"D d M Y" }}</p>
+      <p></p>
+      <p>
+        participants: <span class="num">{{event.praticipents_numbers}}</span>
+      </p>
+      <hr />
+
+      <a href="{%url 'update_event' event.id%}" class="btn btn-primary" >Edit</a>
+      
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+
+{% block pagination %}{% include 'events/_pagination.html' %}{% endblock %}
+
+<script type="text/javascript" src="{% static 'js/event.js'%}"></script>
+
+{% endblock content %}

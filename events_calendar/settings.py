@@ -31,9 +31,12 @@ INSTALLED_APPS = [
     "crispy_forms",
     "allauth",
     "allauth.account",
+    "rest_framework",
+    "debug_toolbar",
+    "django_seed",
     # Local
     "users.apps.UsersConfig",
-    "pages.apps.PagesConfig",
+    "events.apps.EventsConfig",
 ]
 
 
@@ -45,6 +48,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "events_calendar.urls"
@@ -72,12 +76,15 @@ WSGI_APPLICATION = "events_calendar.wsgi.application"
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'events_calender',
+        'USER': 'shaker',
+        'PASSWORD': 'a',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -128,15 +135,15 @@ STATICFILES_FINDERS = [
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 # django-allauth config
-LOGIN_REDIRECT_URL = "home"
-LOGOUT_REDIRECT_URL = "home"
+LOGIN_REDIRECT_URL = "events"
+LOGOUT_REDIRECT_URL = "events"
 SITE_ID = 1
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
@@ -145,3 +152,8 @@ ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 
 
 AUTH_USER_MODEL = "users.CustomUser"
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
