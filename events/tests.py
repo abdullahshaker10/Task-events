@@ -54,7 +54,8 @@ class EventsTests(TestCase):
             content_type="application/json",
         )
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(list(self.event.participant.all()), [self.user, self.user2])
+        self.assertEqual(list(self.event.participant.all()),
+                         [self.user, self.user2])
 
     def test_withdraw_event(self):
         self.client.force_login(self.user2)

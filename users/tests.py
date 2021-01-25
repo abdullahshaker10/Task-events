@@ -37,7 +37,8 @@ class SignupTests(TestCase):
     def test_signup_form(self):
         new_user = get_user_model().objects.create_user(self.username, self.email)
         self.assertEqual(get_user_model().objects.all().count(), 1)
-        self.assertEqual(get_user_model().objects.last().username, self.username)
+        self.assertEqual(
+            get_user_model().objects.last().username, self.username)
         self.assertEqual(get_user_model().objects.last().email, self.email)
 
 

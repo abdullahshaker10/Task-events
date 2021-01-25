@@ -12,7 +12,8 @@ class Event(models.Model):
     owner = models.ForeignKey(
         CustomUser, on_delete=models.SET_NULL, null=True, related_name="events_owner"
     )
-    participant = models.ManyToManyField(CustomUser, related_name="events", blank=True)
+    participant = models.ManyToManyField(
+        CustomUser, related_name="events", blank=True)
 
     def __str__(self):
         return self.title
