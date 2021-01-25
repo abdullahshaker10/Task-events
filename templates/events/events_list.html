@@ -23,10 +23,11 @@
         participants: <span class="num">{{event.praticipents_numbers}}</span>
       </p>
       <hr />
-      
+      {% if request.user.is_authenticated%}
       <button class="btn btn-outline-secondary add-btn update-event">
         subscribe
       </button>
+      {% endif %}
     </div>
   </div>
   {% endfor %}
